@@ -1,21 +1,20 @@
-# thinkhub-flask
-from flask import Flask, render_template, request
-from algorithm import get_optimal_slot
-from dashboard import get_dashboard_data
+# Smart EV Charging Optimization System 🔌⚡
 
-app = Flask(__name__)
+This project optimizes EV charging slot allocation using the **Euclidean Distance Algorithm** and provides a **smart dashboard** showing real-time insights.
 
-@app.route("/", methods=["GET", "POST"])
-def home():
-    optimal_slot = None
+### 🚀 Features
+- Optimal charging slot finder using coordinates  
+- Live dashboard: availability, occupancy, faults, utilization  
+- Flask-based web app  
+- Simple, clean UI  
 
-    if request.method == "POST":
-        ev_x = float(request.form["x"])
-        ev_y = float(request.form["y"])
-        optimal_slot = get_optimal_slot(ev_x, ev_y)
+### 🛠 Tech Stack
+- Python, Flask  
+- Euclidean Distance Algorithm  
+- HTML, CSS  
 
-    dashboard = get_dashboard_data()
-    return render_template("index.html", optimal_slot=optimal_slot, dashboard=dashboard)
+### ▶ Run Locally
+```bash
+pip install -r requirements.txt
+python app.py
 
-if __name__ == "__main__":
-    app.run(debug=True)
